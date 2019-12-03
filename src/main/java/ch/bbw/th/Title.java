@@ -14,9 +14,7 @@ public class Title {
     @Column(name = "name")
     private String text;
 
-    public Title(){
-
-    }
+    public Title(){    }
 
 
     public int getTid() {
