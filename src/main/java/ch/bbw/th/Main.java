@@ -1,5 +1,6 @@
 package ch.bbw.th;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -19,10 +20,10 @@ public class Main {
             case "1":
                 Note mynote = new Note();
                 System.out.print("Title: ");
-                Title mytitle = new Title();
-                mytitle.setText(scanner.nextLine());
+                Title mytitle = new Title(scanner.nextLine());
                 nr.createTitle(mytitle);
                 mynote.setTitle(mytitle);
+
 
                 System.out.print("Category: ");
                 Category mycategory = new Category(scanner.nextLine());
@@ -35,7 +36,18 @@ public class Main {
                 mynote.setText(scanner.nextLine());
 
                 nr.createNote(mynote);
+                break;
+            case "2":
+                List<Note> listNotes = nr.getAllNotes();
 
+                System.out.println("All Notes:\n=========================");
+                if (listNotes == null) {
+                    System.out.println("No Notes found");
+                } else {
+                    for (Note note : listNotes) {
+                        System.out.println(note);
+                    }
+                }
         }
 
         nr.closeup();

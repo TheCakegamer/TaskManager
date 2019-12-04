@@ -8,14 +8,14 @@ import javax.persistence.*;
 public class Title {
 
     @Id
-    @Column(name = "tid", unique = true)
+    @GeneratedValue
     private int tid;
 
     @Column(name = "name")
     private String text;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "title_tid")
+    @JoinColumn(name = "tid")
     private Note note;
 
     public Title(String text){

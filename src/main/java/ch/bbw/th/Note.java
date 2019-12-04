@@ -6,9 +6,9 @@ import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Note")
 @Table(name = "notes")
-@NamedQuery(name = "notes.findAll", query = "SELECT e FROM Note e")
+@NamedQuery(name = "Notes.findAll", query = "SELECT e FROM Note e")
 public class Note {
     @Id
     @Column(name = "id", unique = true)
