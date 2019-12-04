@@ -7,17 +7,20 @@ public class Main {
         nr.setup();
 
         Note mynote = new Note();
+
+        Category mycategory = new Category("Homework");
+        nr.createCategory(mycategory);
+
         Title mytitle = new Title();
-        Category mycategory = new Category();
-        mycategory.setName("Homework");
         mytitle.setText("Do Homework");
+        nr.createTitle(mytitle);
+
         mynote.setTitle(mytitle);
         mynote.setCategory(mycategory);
         mynote.setChecked(false);
         mynote.setText("Do the homework for thursday");
 
         nr.createNote(mynote);
-
         nr.closeup();
 
 

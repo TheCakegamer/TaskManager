@@ -54,4 +54,70 @@ public class NoteRepository {
         List<Note> noteList = this.entityManager.createNamedQuery("Note.findAll").getResultList();
         return noteList;
     }
+
+    public Category readCategory(int id) {
+        Category emp = entityManager.find(Category.class, id);
+        return emp;
+    }
+
+    public void updateCategory(Category category) {
+        this.entityManager.getTransaction().begin();
+        Category empfromdb = entityManager.find(Category.class, category.getId());
+        empfromdb.setName(category.getName());
+        entityManager.getTransaction().commit();
+        System.out.println("Category with ID " + category.getId() + " successfully updated");
+    }
+
+    public void deleteCategory(int id) {
+        this.entityManager.getTransaction().begin();
+        entityManager.remove(readCategory(id));
+        System.out.println("Category with ID " + id + " successfully deleted");
+        this.entityManager.getTransaction().commit();
+    }
+
+
+    public void createCategory(Category category) {
+        this.entityManager.getTransaction().begin();
+        entityManager.persist(category);
+        System.out.println("Category successfully created");
+        entityManager.getTransaction().commit();
+    }
+
+    public List<Category> getAllCategorys() {
+        List<Category> categoryList = this.entityManager.createNamedQuery("Category.findAll").getResultList();
+        return categoryList;
+    }
+
+    public Title readTitle(int id) {
+        Title emp = entityManager.find(Title.class, id);
+        return emp;
+    }
+
+    public void updateTitle(Title title) {
+        this.entityManager.getTransaction().begin();
+        Title empfromdb = entityManager.find(Title.class, title.getTid());
+        empfromdb.setText(title.getText());
+        entityManager.getTransaction().commit();
+        System.out.println("Title with ID " + title.getTid() + " successfully updated");
+    }
+
+    public void deleteTitle(int id) {
+        this.entityManager.getTransaction().begin();
+        entityManager.remove(readTitle(id));
+        System.out.println("Title with ID " + id + " successfully deleted");
+        this.entityManager.getTransaction().commit();
+    }
+
+
+    public void createTitle(Title title) {
+        this.entityManager.getTransaction().begin();
+        entityManager.persist(title);
+        System.out.println("Title successfully created");
+        entityManager.getTransaction().commit();
+    }
+
+    public List<Title> getAllTitles() {
+        List<Title> titleList = this.entityManager.createNamedQuery("Title.findAll").getResultList();
+        return titleList;
+    }
 }

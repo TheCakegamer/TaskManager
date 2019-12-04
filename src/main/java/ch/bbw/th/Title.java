@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "title")
-@NamedQuery(name = "title.findAll", query = "SELECT e FROM title e")
+@NamedQuery(name = "title.findAll", query = "SELECT e FROM Title e")
 public class Title {
 
     @Id
@@ -13,6 +13,10 @@ public class Title {
 
     @Column(name = "name")
     private String text;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "title_tid")
+    private Note note;
 
     public Title(){    }
 

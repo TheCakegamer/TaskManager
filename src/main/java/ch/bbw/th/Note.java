@@ -1,11 +1,14 @@
 package ch.bbw.th;
 
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "notes")
-@NamedQuery(name = "notes.findAll", query = "SELECT e FROM notes e")
+@NamedQuery(name = "notes.findAll", query = "SELECT e FROM Note e")
 public class Note {
     @Id
     @Column(name = "id", unique = true)
@@ -17,10 +20,13 @@ public class Note {
     @Column(name = "checked")
     private boolean checked;
 
-    @OneToOne
+    @OneToOne(mappedBy = "note", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = false)
+    @NotFound(action = NotFoundAction.IGNORE)
     private Title title;
 
     @ManyToOne
+    @NotFound(action = NotFoundAction.IGNORE)
     private Category category;
 
     public Note() {

@@ -1,30 +1,38 @@
 package ch.bbw.th;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "category")
-@NamedQuery(name = "category.findAll", query = "SELECT e FROM category e")
+@NamedQuery(name = "category.findAll", query = "SELECT e FROM Category e")
 public class Category {
 
     @Id
-    @Column(name = "id", unique = true)
+    @Column(name = "cID", unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Integer cid;
 
     @Column(name = "name")
     private String name;
 
-    public Category(){
+    @OneToMany
+    private List<Note> notes;
+
+    public Category(String name){
+        this.name = name;
+    }
+
+    public Category() {
 
     }
 
     public Integer getId() {
-        return id;
+        return cid;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.cid = id;
     }
 
     public String getName() {
@@ -38,7 +46,7 @@ public class Category {
     @Override
     public String toString() {
         return "Category{" +
-                "id=" + id +
+                "id=" + cid +
                 ", name='" + name + '\'' +
                 '}';
     }
