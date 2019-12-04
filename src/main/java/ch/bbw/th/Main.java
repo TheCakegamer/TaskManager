@@ -13,9 +13,8 @@ public class Main {
 
         System.out.println("1. Create new Note");
         System.out.println("2. Read all Notes");
-        System.out.println("3. Create new Category");
-        System.out.println("4. Check Note");
-        System.out.println("5. Delete Note");
+        System.out.println("3. Check Note");
+        System.out.println("4. Delete Note");
         switch (scanner.nextLine()) {
             case "1":
                 Note mynote = new Note();
@@ -48,6 +47,22 @@ public class Main {
                         System.out.println(note);
                     }
                 }
+                break;
+            case "3":
+                List<Note> NoteList = nr.getAllNotes();
+
+                System.out.println("All Notes:\n=========================");
+                if (NoteList == null) {
+                    System.out.println("No Notes found");
+                } else {
+                    for (Note note : NoteList) {
+                        System.out.println(note);
+                    }
+                }
+                System.out.print("ID: ");
+                Note pickednote = nr.readNote(scanner.nextInt());
+                pickednote.setChecked(!pickednote.isChecked());
+                nr.updateNote(pickednote);
         }
 
         nr.closeup();
