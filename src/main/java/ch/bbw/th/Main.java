@@ -1,26 +1,43 @@
 package ch.bbw.th;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
+        Scanner scanner = new Scanner(System.in);
         NoteRepository nr = new NoteRepository();
         nr.setup();
 
-        Note mynote = new Note();
 
-        Category mycategory = new Category("Homework");
-        nr.createCategory(mycategory);
+        System.out.println("1. Create new Note");
+        System.out.println("2. Read all Notes");
+        System.out.println("3. Create new Category");
+        System.out.println("4. Check Note");
+        System.out.println("5. Delete Note");
+        switch (scanner.nextLine()) {
+            case "1":
+                Note mynote = new Note();
+                System.out.print("Title: ");
+                Title mytitle = new Title();
+                mytitle.setText(scanner.nextLine());
+                nr.createTitle(mytitle);
+                mynote.setTitle(mytitle);
 
-        Title mytitle = new Title();
-        mytitle.setText("Do Homework");
-        nr.createTitle(mytitle);
+                System.out.print("Category: ");
+                Category mycategory = new Category(scanner.nextLine());
+                nr.createCategory(mycategory);
+                mynote.setCategory(mycategory);
 
-        mynote.setTitle(mytitle);
-        mynote.setCategory(mycategory);
-        mynote.setChecked(false);
-        mynote.setText("Do the homework for thursday");
 
-        nr.createNote(mynote);
+                System.out.print("Text: ");
+                mynote.setChecked(false);
+                mynote.setText(scanner.nextLine());
+
+                nr.createNote(mynote);
+
+        }
+
         nr.closeup();
 
 

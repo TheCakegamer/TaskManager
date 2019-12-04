@@ -18,7 +18,13 @@ public class Title {
     @JoinColumn(name = "title_tid")
     private Note note;
 
-    public Title(){    }
+    public Title(String text){
+        this.text = text;
+    }
+
+    public Title() {
+
+    }
 
 
     public int getTid() {
