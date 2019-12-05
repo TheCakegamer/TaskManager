@@ -84,7 +84,7 @@ public class NoteRepository {
     }
 
     public List<Category> getAllCategorys() {
-        List<Category> categoryList = this.entityManager.createNamedQuery("Category.findAll").getResultList();
+        List<Category> categoryList = this.entityManager.createNamedQuery("category.findAll").getResultList();
         return categoryList;
     }
 

@@ -23,16 +23,35 @@ public class Main {
                 nr.createTitle(mytitle);
                 mynote.setTitle(mytitle);
 
+                System.out.print("1) New Category\n2) Chose existing Category\nInput: ");
+                switch (scanner.nextLine()) {
+                    case "1":
+                        System.out.print("Category: ");
+                        Category mycategory = new Category(scanner.nextLine());
+                        nr.createCategory(mycategory);
+                        mynote.setCategory(mycategory);
+                        break;
 
-                System.out.print("Category: ");
-                Category mycategory = new Category(scanner.nextLine());
-                nr.createCategory(mycategory);
-                mynote.setCategory(mycategory);
+                    case "2":
+                        List<Category> ListCategory = nr.getAllCategorys();
 
+                        System.out.println("All Notes:\n=========================");
+                        if (ListCategory == null) {
+                            System.out.println("No Categories found");
+                        } else {
+                            for (Category cat : ListCategory) {
+                                System.out.println(cat);
+                            }
+                        }
+                        System.out.print("Category: ");
+                        Category pickedcategory = nr.readCategory(scanner.nextInt());
+                        nr.createCategory(pickedcategory);
+                        mynote.setCategory(pickedcategory);
+                }
 
                 System.out.print("Text: ");
-                mynote.setChecked(false);
                 mynote.setText(scanner.nextLine());
+                mynote.setChecked(false);
 
                 nr.createNote(mynote);
                 break;
