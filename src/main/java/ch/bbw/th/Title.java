@@ -8,7 +8,6 @@ import javax.persistence.*;
 public class Title {
 
     @Id
-    @GeneratedValue
     private int tid;
 
     @Column(name = "name")

@@ -10,7 +10,7 @@ public class Main {
         NoteRepository nr = new NoteRepository();
         nr.setup();
 
-
+        System.out.println("Tasks:\n======================");
         System.out.println("1. Create new Note");
         System.out.println("2. Read all Notes");
         System.out.println("3. Check Note");
@@ -63,6 +63,23 @@ public class Main {
                 Note pickednote = nr.readNote(scanner.nextInt());
                 pickednote.setChecked(!pickednote.isChecked());
                 nr.updateNote(pickednote);
+                break;
+            case "4":
+                List<Note> AllTheNotes = nr.getAllNotes();
+
+                System.out.println("All Notes:\n=========================");
+                if (AllTheNotes == null) {
+                    System.out.println("No Notes found");
+                } else {
+                    for (Note note : AllTheNotes) {
+                        System.out.println(note);
+                    }
+                }
+                System.out.print("ID: ");
+                nr.deleteNote(scanner.nextInt());
+                break;
+            default:
+                break;
         }
 
         nr.closeup();
